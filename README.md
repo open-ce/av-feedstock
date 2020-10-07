@@ -1,6 +1,6 @@
 # av-feedstock
   
-This repository is one of several that comprise the broader **Open-CE** project. Each feedstock repository provides a conda-based build framework for a specified package within **Open-CE**.
+This repository is one of several that comprise the broader [**Open-CE**](https://github.com/open-ce) project. Each feedstock repository provides a conda-based build framework for a specified package within [**Open-CE**](https://github.com/open-ce).
 
 These feedstock repositories do not contain the source code for the corresponding packages themselves. Instead, they contain the automated means to build the desired package from the officially designated source location.
 
