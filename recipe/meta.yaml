@@ -1,0 +1,58 @@
+{% set name = "av" %}
+{% set version = "8.0.2" %}
+{% set sha256 = "a3bba6bf68766b8a1a057f28869c7078cf0a1ec3207c7788c2ce8fe6f6bd8267" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  fn: {{ name }}-{{ version }}.tar.gz
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 1
+  script: {{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv
+  run_exports:
+    # PyAV now claims to follow semantic versioning
+    - {{ pin_subpackage('av') }}
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - pkg-config {{ pkg_config }}
+  host:
+    - python {{ python }}
+    - pip {{ pip }}
+    - cython {{ cython }}
+    - numpy {{ numpy }}
+    - ffmpeg {{ ffmpeg }}
+    - pillow {{ pillow }}
+  run:
+    - python {{ python }}
+    - numpy {{ numpy }}
+    - ffmpeg {{ ffmpeg }}
+    - pillow {{ pillow }}
+
+test:
+  imports:
+    - av
+
+about:
+  home: https://github.com/PyAV-Org/PyAV/
+  license: BSD 3-Clause
+  license_family: BSD
+  license_file: LICENSE.txt
+  summary: Pythonic bindings for FFmpeg.
+
+  description: |
+    PyAV is a Pythonic binding for FFmpeg or Libav. We aim to provide all of
+    the power and control of the underlying library, but manage the gritty
+    details as much as possible.
+  doc_url: https://pyav.org/docs/develop/ 
+  dev_url: https://github.com/PyAV-Org/PyAV/ 
+
+extra:
+  recipe-maintainers:
+    - open-ce/open-ce-dev-team
