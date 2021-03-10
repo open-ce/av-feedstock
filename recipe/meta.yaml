@@ -32,7 +32,7 @@ requirements:
   run:
     - python {{ python }}
     - numpy {{ numpy }}
-    - ffmpeg {{ ffmpeg }}
+    - ffmpeg                           # versioning handled by run_exports
     - pillow {{ pillow }}
 
 test:
