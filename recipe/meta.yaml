@@ -32,6 +32,9 @@ requirements:
     - numpy {{ numpy }}
     - ffmpeg {{ ffmpeg }}
     - pillow {{ pillow }}
+    # Use pins to control cos6/cos7 match
+    - libgcc-ng  {{ libgcc }}
+    - libstdcxx-ng  {{ libstdcxx }}
   run:
     - python {{ python }}
     - numpy {{ numpy }}
@@ -39,6 +42,10 @@ requirements:
     - pillow {{ pillow }}
 
 test:
+  requires:
+    # Use pins to control cos6/cos7 match
+    - libgcc-ng  {{ libgcc }}
+    - libstdcxx-ng  {{ libstdcxx }}
   imports:
     - av
 
