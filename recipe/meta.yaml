@@ -17,6 +17,9 @@ build:
   run_exports:
     # PyAV now claims to follow semantic versioning
     - {{ pin_subpackage('av') }}
+  ignore_run_exports:
+    - libgcc-ng
+    - libstdcxx-ng
 
 requirements:
   build:
@@ -40,12 +43,11 @@ requirements:
     - numpy {{ numpy }}
     - ffmpeg {{ ffmpeg }}
     - pillow {{ pillow }}
-
-test:
-  requires:
     # Use pins to control cos6/cos7 match
     - libgcc-ng  {{ libgcc }}
     - libstdcxx-ng  {{ libstdcxx }}
+
+test:
   imports:
     - av
 
