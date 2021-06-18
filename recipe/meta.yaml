@@ -12,16 +12,22 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 1
+  number: 2
   script: {{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv
   run_exports:
     # PyAV now claims to follow semantic versioning
     - {{ pin_subpackage('av') }}
+  ignore_run_exports:
+    - libgcc-ng
+    - libstdcxx-ng
 
 requirements:
   build:
     - {{ compiler('c') }}
     - pkg-config {{ pkg_config }}
+    # Use pins to control cos6/cos7 match
+    - libgcc-ng  {{ libgcc }}
+    - libstdcxx-ng  {{ libstdcxx }}
   host:
     - python {{ python }}
     - pip {{ pip }}
@@ -29,11 +35,17 @@ requirements:
     - numpy {{ numpy }}
     - ffmpeg {{ ffmpeg }}
     - pillow {{ pillow }}
+    # Use pins to control cos6/cos7 match
+    - libgcc-ng  {{ libgcc }}
+    - libstdcxx-ng  {{ libstdcxx }}
   run:
     - python {{ python }}
     - numpy {{ numpy }}
     - ffmpeg                           # versioning handled by run_exports
     - pillow {{ pillow }}
+    # Use pins to control cos6/cos7 match
+    - libgcc-ng  {{ libgcc }}
+    - libstdcxx-ng  {{ libstdcxx }}
 
 test:
   imports:
