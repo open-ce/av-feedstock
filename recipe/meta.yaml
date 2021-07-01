@@ -1,6 +1,6 @@
 {% set name = "av" %}
-{% set version = "8.0.2" %}
-{% set sha256 = "a3bba6bf68766b8a1a057f28869c7078cf0a1ec3207c7788c2ce8fe6f6bd8267" %}
+{% set version = "8.0.3" %}
+{% set sha256 = "521814309c91d526b6b5c9517018aef2dd12bc3d86351037db69aa67730692b8" %}
 
 package:
   name: {{ name|lower }}
@@ -12,7 +12,7 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 2
+  number: 1
   script: {{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv
   run_exports:
     # PyAV now claims to follow semantic versioning
@@ -41,7 +41,7 @@ requirements:
   run:
     - python {{ python }}
     - numpy {{ numpy }}
-    - ffmpeg {{ ffmpeg }}
+    - ffmpeg                           # versioning handled by run_exports
     - pillow {{ pillow }}
     # Use pins to control cos6/cos7 match
     - libgcc-ng  {{ libgcc }}
