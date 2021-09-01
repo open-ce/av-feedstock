@@ -22,9 +22,6 @@ requirements:
   build:
     - {{ compiler('c') }}
     - pkg-config {{ pkg_config }}
-    # Use pins to control cos6/cos7 match
-    - libgcc-ng  {{ libgcc }}
-    - libstdcxx-ng  {{ libstdcxx }}
   host:
     - python {{ python }}
     - pip {{ pip }}
@@ -32,9 +29,6 @@ requirements:
     - numpy {{ numpy }}
     - ffmpeg {{ ffmpeg }}
     - pillow {{ pillow }}
-    # Use pins to control cos6/cos7 match
-    - libgcc-ng  {{ libgcc }}
-    - libstdcxx-ng  {{ libstdcxx }}
   run:
     - python {{ python }}
     - numpy {{ numpy }}
