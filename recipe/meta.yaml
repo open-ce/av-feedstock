@@ -22,6 +22,9 @@ requirements:
   build:
     - {{ compiler('c') }}
     - pkg-config {{ pkg_config }}
+    # Use pins to control cos6/cos7 match
+    - libgcc-ng  {{ libgcc }}         # [x86_64 and c_compiler_version == "7.2.*"]
+    - libstdcxx-ng  {{ libstdcxx }}   # [x86_64 and c_compiler_version == "7.2.*"]
   host:
     - python {{ python }}
     - pip {{ pip }}
@@ -29,6 +32,9 @@ requirements:
     - numpy {{ numpy }}
     - ffmpeg {{ ffmpeg }}
     - pillow {{ pillow }}
+    # Use pins to control cos6/cos7 match
+    - libgcc-ng  {{ libgcc }}         # [x86_64 and c_compiler_version == "7.2.*"]
+    - libstdcxx-ng  {{ libstdcxx }}   # [x86_64 and c_compiler_version == "7.2.*"]
   run:
     - python {{ python }}
     - numpy {{ numpy }}
