@@ -1,10 +1,10 @@
 tests:
   - name: Setup PyAV Tests
     command: |
+        conda install -y git pytest
         git clone -b v$(python -c "import av; print(av.__version__)") https://github.com/PyAV-Org/PyAV.git 
         cd PyAV
         rm -rf av
-        conda install -y git pytest
   - name: Run PyAV tests
     command: |
         cd PyAV
