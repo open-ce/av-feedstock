@@ -1,6 +1,6 @@
 {% set name = "av" %}
-{% set version = "8.0.3" %}
-{% set sha256 = "521814309c91d526b6b5c9517018aef2dd12bc3d86351037db69aa67730692b8" %}
+{% set version = "9.2.0" %}
+{% set sha256 = "f2a7c226724d7f7745b376b459c500d9d17bd8d0473b7ea6bf8ddb4f7957c69d" %}
 
 package:
   name: {{ name|lower }}
@@ -12,7 +12,7 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 5
+  number: 1
   script: {{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv
   run_exports:
     # PyAV now claims to follow semantic versioning
@@ -22,9 +22,6 @@ requirements:
   build:
     - {{ compiler('c') }}             #[ppc_arch != "p10"]
     - pkg-config {{ pkg_config }}
-    # Use pins to control cos6/cos7 match
-    - libgcc-ng  {{ libgcc }}         # [x86_64 and c_compiler_version == "7.2.*"]
-    - libstdcxx-ng  {{ libstdcxx }}   # [x86_64 and c_compiler_version == "7.2.*"]
   host:
     - python {{ python }}
     - pip {{ pip }}
@@ -32,9 +29,6 @@ requirements:
     - numpy {{ numpy }}
     - ffmpeg {{ ffmpeg }}
     - pillow
-    # Use pins to control cos6/cos7 match
-    - libgcc-ng  {{ libgcc }}         # [x86_64 and c_compiler_version == "7.2.*"]
-    - libstdcxx-ng  {{ libstdcxx }}   # [x86_64 and c_compiler_version == "7.2.*"]
   run:
     - python {{ python }}
     - numpy {{ numpy }}
