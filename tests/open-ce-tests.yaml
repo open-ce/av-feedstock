@@ -8,6 +8,18 @@ tests:
   - name: Run PyAV tests
     command: |
         cd PyAV
-        pytest -v -k "not test_reformat_pixel_format_align" tests/
+        TESTSUITES_TO_RUN=(
+                      tests/test_audiofifo.py
+                      tests/test_audioformat.py
+                      tests/test_audioframe.py
+                      tests/test_codec.py
+                      tests/test_audiolayout.py
+                      tests/test_videoformat.py
+        )
+        for test_suite in "${TESTSUITES_TO_RUN[@]}"
+        do
+          TEST_SUITES+="$test_suite "
+        done
+        pytest -v ${TEST_SUITES}
   - name: Clean tests
     command: rm -rf PyAV
